@@ -10,6 +10,7 @@ func main() {
 	// => http://localhost:3000/css/style.css
 
 	app.Static("/sample0", "../web/sample0")
+	app.Static("/sample2", "../web/sample2")
 
 	app.Static("/sample1", "../web/sample1")
 	// => http://localhost:3000/sample1/js/script.js
