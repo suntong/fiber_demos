@@ -10,8 +10,10 @@ func main() {
 	// => http://localhost:3000/css/style.css
 
 	app.Static("/sample0", "../web/sample0")
-	// => http://localhost:3000/prefix/js/script.js
-	// => http://localhost:3000/prefix/css/style.css
+
+	app.Static("/sample1", "../web/sample1")
+	// => http://localhost:3000/sample1/js/script.js
+	// => http://localhost:3000/sample1/css/style.css
 
 	app.Listen(3000)
 }
