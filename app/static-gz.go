@@ -17,6 +17,8 @@ func main() {
 
 	// to serve directly from already-compressed files with the .gz suffix
 	app.Settings.CompressedFileSuffix = ".gz" // default: ".fiber.gz"
+	// https://docs.gofiber.io/api/app#settings
+	// https://docs.gofiber.io/application#static
 	app.Static("/sample-gz", "../web/sample-gz", fiber.Static{
 		Compress: true,
 	})
