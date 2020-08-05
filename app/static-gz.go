@@ -14,6 +14,7 @@ func main() {
 	app.Static("/sample1", "../web/sample1")
 	// => http://localhost:3000/sample1/js/script.js
 	// => http://localhost:3000/sample1/css/style.css
+	app.Static("/ot", "../web/OverTime")
 
 	// to serve directly from already-compressed files with the .gz suffix
 	app.Settings.CompressedFileSuffix = ".gz" // default: ".fiber.gz"
