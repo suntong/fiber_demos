@@ -23,6 +23,9 @@ func main() {
 	app.Static("/sample-gz", "../web/sample-gz", fiber.Static{
 		Compress: true,
 	})
+	app.Static("/ot-gz", "../web/OverTime-gz", fiber.Static{
+		Compress: true,
+	})
 
 	app.Listen(3000)
 }
