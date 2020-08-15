@@ -23,7 +23,8 @@ func main() {
 	app.Use(middleware.Compress())
 	// Register static route
 	app.Static("/sample-br0", "../web/sample0")
-	app.Static("/sample-br1", "../web/sample-br")
+	app.Static("/sample-br1", "../web/br/sample-br1")
+	app.Static("/sample-br2", "../web/br/sample-br2")
 
 	app.Listen(3000)
 }
