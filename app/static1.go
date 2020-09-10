@@ -9,6 +9,8 @@ func main() {
 	// => http://localhost:3000/js/script.js
 	// => http://localhost:3000/css/style.css
 
+	app.Static("/web", "../web")
+
 	app.Static("/sample0", "../web/sample0")
 
 	app.Static("/sample1", "../web/sample1")

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Load JS File Demo</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <script>
+    var url = "/web/js-inc/test.js";
+    
+    $.getScript(url, function(){
+        $(document).ready(function(){
+            console.log(str); // Prints: Hi there!
+            console.log(num); // Prints: 15
+            console.log(multiplyNumbers(4, 25)); // Prints: 100
+        });
+    });
+    </script> 
+</body>
+</html>
