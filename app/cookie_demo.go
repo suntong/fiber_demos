@@ -28,27 +28,25 @@ func main() {
 		c.Send(tests + " => " + testn)
 	})
 
+	// get cookie (this should be ran after the above)
+	app.Get("/c", func(c *fiber.Ctx) {
+		c.SendString(c.Cookies(cookieName))
+	})
+
 	app.Listen(3000)
 }
 
 /*
 
-$ curl http://localhost:3000/q?p=AAA
-[AAAAAAAAAAAAA]
+See https://github.com/gofiber/fiber/issues/768
 
-$ curl http://localhost:3000/q?p=BBB
-[AAAAAAAAAAAAA BBBBBBBBBBBBB]
+Repeatably make request to http://localhost:3000/q?p=AAA will get
 
-$ curl http://localhost:3000/q?p=CCC
-[AAAAAAAAAAAAA BBBBBBBBBBBBB CCCCCCCCCCCCC]
+, AAA, AAA, AAA, AAA => , AAA, AAA, AAA
 
-$ curl http://localhost:3000/q?p=DDD
-[AAAAAAAAAAAAA BBBBBBBBBBBBB CCCCCCCCCCCCC DDDDDDDDDDDDD]
+This is normal as
 
-$ curl http://localhost:3000/q?p=EEEEEEEEEEEEE
-[AAAAAAAAAAAAA BBBBBBBBBBBBB CCCCCCCCCCCCC DDDDDDDDDDDDD EEEEEEEEEEEEE]
-
-$ curl http://localhost:3000/q?p=CCCCCCCCCCCCC
-[AAAAAAAAAAAAA BBBBBBBBBBBBB DDDDDDDDDDDDD EEEEEEEEEEEEE CCCCCCCCCCCCC]
+- when setting the cookie with c.Cookie, it adds the Set-Cookie header to the response object
+- I.e., Cookies are set in the response header, and retrieved by looking at the request header.
 
 */
