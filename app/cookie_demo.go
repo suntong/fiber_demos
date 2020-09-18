@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 )
 
 const cookieName = "test_cookie"
@@ -12,7 +12,7 @@ func main() {
 	app := fiber.New()
 
 	// http://localhost:3000/q?p=something
-	app.Get("/q", func(c *fiber.Ctx) {
+	app.Get("/q", func(c *fiber.Ctx) error {
 		cookie := new(fiber.Cookie)
 		cookie.Expires = time.Now().Add(24 * time.Hour)
 		tests := c.Cookies(cookieName)
@@ -25,15 +25,15 @@ func main() {
 
 		// Get cookie value right back
 		testn := c.Cookies(cookieName)
-		c.Send(tests + " => " + testn)
+		return c.SendString(tests + " => " + testn)
 	})
 
 	// get cookie (this should be ran after the above)
-	app.Get("/c", func(c *fiber.Ctx) {
-		c.SendString(c.Cookies(cookieName))
+	app.Get("/c", func(c *fiber.Ctx) error {
+		return c.SendStringString(c.Cookies(cookieName))
 	})
 
-	app.Listen(3000)
+	app.Listen(":3000")
 }
 
 /*

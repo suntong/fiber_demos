@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gofiber/fiber"
-	"github.com/gofiber/fiber/middleware"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware"
 	"github.com/gofiber/template/html"
 )
 
@@ -22,19 +22,19 @@ func main() {
 	// compression with default config
 	app.Use(middleware.Compress())
 
-	app.Get("/", func(c *fiber.Ctx) {
+	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
-		c.Render("index", fiber.Map{
+		return c.Render("index", fiber.Map{
 			"Title": "Hello, World!",
 		})
 	})
 
-	app.Get("/layout", func(c *fiber.Ctx) {
+	app.Get("/layout", func(c *fiber.Ctx) error {
 		// Render index within layouts/main
-		c.Render("index", fiber.Map{
+		return c.Render("index", fiber.Map{
 			"Title": "Hello, World!",
 		}, "layouts/main")
 	})
 
-	app.Listen(3000)
+	app.Listen(":3000")
 }

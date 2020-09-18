@@ -1,6 +1,6 @@
 package main
 
-import "github.com/gofiber/fiber"
+import "github.com/gofiber/fiber/v2"
 
 func main() {
 	app := fiber.New()
@@ -27,5 +27,5 @@ func main() {
 		Compress: true,
 	})
 
-	app.Listen(3000)
+	app.Listen(":3000")
 }

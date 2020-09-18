@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gofiber/fiber"
-	"github.com/gofiber/fiber/middleware"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware"
 )
 
 func main() {
@@ -26,5 +26,5 @@ func main() {
 	app.Static("/sample-br1", "../web/br/sample-br1")
 	app.Static("/sample-br2", "../web/br/sample-br2")
 
-	app.Listen(3000)
+	app.Listen(":3000")
 }

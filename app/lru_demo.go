@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/utils"
 	"github.com/hashicorp/golang-lru/simplelru"
 )
@@ -23,14 +23,14 @@ func main() {
 	}
 
 	// http://localhost:3000/q?p=something
-	app.Get("/q", func(c *fiber.Ctx) {
+	app.Get("/q", func(c *fiber.Ctx) error {
 		p := utils.ImmutableString(c.Query("p"))
 		l.Add(p, nil)
 		r := fmt.Sprintln(l.Keys())
-		c.Send(r)
+		return c.SendString(r)
 	})
 
-	app.Listen(3000)
+	app.Listen(":3000")
 }
 
 /*
