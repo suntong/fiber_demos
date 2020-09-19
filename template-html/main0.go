@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware"
 	"github.com/gofiber/template/html"
 )
 
@@ -18,9 +17,6 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
-
-	// compression with default config
-	app.Use(middleware.Compress())
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
