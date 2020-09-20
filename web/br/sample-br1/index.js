@@ -1,1 +1,1 @@
-../sample0/index.js
+../../sample0/index.js
