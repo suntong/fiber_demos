@@ -5,6 +5,9 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
+	"github.com/gofiber/fiber/v2/middleware/favicon"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html"
 )
 
@@ -21,6 +24,10 @@ func main() {
 		Views: engine,
 	})
 
+	// Middleware
+	app.Use(recover.New())
+	app.Use(logger.New())
+	app.Use(favicon.New())
 	// compression with default config
 	app.Use(compress.New())
 
@@ -34,6 +41,13 @@ func main() {
 	app.Get("/layout", func(c *fiber.Ctx) error {
 		// Render index within layouts/main
 		return c.Render("index", fiber.Map{
+			"Title": "Hello, World!",
+		}, "layouts/main")
+	})
+
+	app.Get("/index2", func(c *fiber.Ctx) error {
+		// Render index within layouts/main
+		return c.Render("index2", fiber.Map{
 			"Title": "Hello, World!",
 		}, "layouts/main")
 	})
