@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware"
+	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/template/html"
 )
 
 func main() {
 	// Create a new engine
 	engine := html.New("./views", ".html")
-
+	engine.Reload(true)
 	// Or from an embedded system
 	// See github.com/gofiber/embed for examples
 	// engine := html.NewFileSystem(http.Dir("./views", ".html"))
@@ -20,7 +20,7 @@ func main() {
 	})
 
 	// compression with default config
-	app.Use(middleware.Compress())
+	app.Use(compress.New())
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		// Render index
