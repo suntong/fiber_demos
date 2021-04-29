@@ -30,7 +30,7 @@ func main() {
 
 	// get cookie (this should be ran after the above)
 	app.Get("/c", func(c *fiber.Ctx) error {
-		return c.SendStringString(c.Cookies(cookieName))
+		return c.SendString(c.Cookies(cookieName))
 	})
 
 	app.Listen(":3000")
